@@ -57,3 +57,11 @@ typings/
 # dotenv environment variables file
 .env
 
+# All .map files for css and js
+.map
+
+# Build folder
+build/
+
+# This will build on it own when you npm install
+package-lock.json
