@@ -1,0 +1,19 @@
+{
+    "env": {
+        "es6": true,
+        "browser": true
+    },
+    "extends": "airbnb-base",
+    "rules": {
+        "func-names": ["error", "never"],
+        "quotes": ["error", "single"],
+        "semi": ["error", "never"],
+        "no-console": 0,
+        "space-in-parens": ["warn", "always"],
+        "padded-blocks": ["warn", "always"],
+        "indent": ["error", "tab"],
+        "eol-last": 0,
+        "no-tabs": 0,
+        "one-var": ["error", "always"]
+    }
+}
