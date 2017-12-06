@@ -1,0 +1,8 @@
+linters:
+    Indentation:
+        character: space
+        width: 4
+    FinalNewline:
+        enabled: false
+    SpaceBetweenParens:
+        spaces: 1
