@@ -14,6 +14,9 @@
         "indent": ["error", "tab"],
         "eol-last": 0,
         "no-tabs": 0,
-        "one-var": ["error", "always"]
+        "one-var": ["error", "always"],
+        "comma-dangle": ["error", "never"],
+        "no-use-before-define": ["error", { "functions": false, "classes": true }],
+        "arrow-parens": ["error", "as-needed"]
     }
 }

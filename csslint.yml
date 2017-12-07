@@ -1,7 +1,7 @@
 linters:
     Indentation:
-        character: space
-        width: 4
+        character: tab
+        width: 1
     FinalNewline:
         enabled: false
     SpaceBetweenParens:

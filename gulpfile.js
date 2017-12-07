@@ -81,6 +81,15 @@ gulp.task( 'js', ['eslint'], () => {
 
 })
 
+gulp.task( 'js-build', () => {
+
+	pump( [
+		gulp.src( 'src/js-static/*.js' ),
+		gulp.dest( 'build/js' )
+	] )
+
+})
+
 gulp.task( 'image', () => {
 
     pump( [
@@ -123,11 +132,12 @@ gulp.task( 'browser-sync', () => {
 
     gulp.watch( [ 'src/css/*.scss', 'src/css/**/*.scss' ], [ 'scss-lint', 'css' ] )
     gulp.watch( [ 'src/js/*.js', 'src/js/**/*.js' ], [ 'js' ] )
+	gulp.watch( 'src/js-static/*.js', [ 'js-build' ] )
     gulp.watch( 'src/images/*', [ 'image' ] )
     gulp.watch( 'src/objects/*', [ 'objects' ] )
     gulp.watch( './*.html' ).on( 'change', browserSync.reload )
 
 })
 
-gulp.task( 'default', [ 'css', 'js', 'image', 'objects' ] )
+gulp.task( 'default', [ 'css', 'js', 'js-build', 'image', 'objects' ] )
 gulp.task( 'start', [ 'browser-sync' ] )
