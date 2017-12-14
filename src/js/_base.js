@@ -1,12 +1,13 @@
 /* global THREE */
 
-const scene = new THREE.Scene,
+const scene = new THREE.Scene(),
+	playerHeight = 1.8,
 
 	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 ),
-	camBox = new THREE.Object3D()
+	camBox = new THREE.Group()
 
 camera.position.z = 5
-camera.position.y = 2
+camera.position.y = playerHeight
 camBox.name = 'camBox'
 
 camBox.add( camera )
@@ -33,5 +34,6 @@ export {
 	camera,
 	camBox,
 	renderer,
-	controls
+	controls,
+	playerHeight
 }

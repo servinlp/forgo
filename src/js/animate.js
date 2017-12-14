@@ -3,6 +3,10 @@ import {
 	camera,
 	renderer
 } from './_base'
+import {
+	controller1,
+	controller2
+} from './controls'
 
 function animate() {
 
@@ -11,6 +15,9 @@ function animate() {
 }
 
 function loop() {
+
+	controller1.update()
+	controller2.update()
 
 	renderer.render( scene, camera )
 

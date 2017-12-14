@@ -1,7 +1,8 @@
 /* global THREE */
 import animate from './animate'
 import WEBVR from './WebVR'
-import { scene, renderer, camBox } from './_base'
+import { scene, renderer, camBox, playerHeight } from './_base'
+import { setControllers } from './controls'
 
 function init() {
 
@@ -22,11 +23,11 @@ function init() {
 
 			WEBVR.getVRDisplay( display => {
 
-				console.log( display )
-				console.log( renderer.vr )
-				camBox.position.y = 1.8
+				camBox.position.y = playerHeight
 				renderer.vr.enabled = true
 				renderer.vr.setDevice( display )
+
+				setControllers()
 
 				document.body.appendChild( WEBVR.getButton( display, renderer.domElement ) )
 

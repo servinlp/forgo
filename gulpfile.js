@@ -114,9 +114,8 @@ gulp.task( 'image', () => {
 gulp.task( 'objects', () => {
 
     pump( [
-        gulp.src( 'src/objects/*' ),
-        gulp.dest( 'build/objects' ),
-        browserSync.stream()
+        gulp.src( [ 'src/objects/*', 'src/objects/**/*' ] ),
+        gulp.dest( 'build/objects' )
     ] )
 
 })
