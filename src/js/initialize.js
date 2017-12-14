@@ -1,7 +1,7 @@
 /* global THREE */
 import animate from './animate'
 import WEBVR from './WebVR'
-import { scene, renderer } from './_base'
+import { scene, renderer, camBox } from './_base'
 
 function init() {
 
@@ -14,6 +14,9 @@ function init() {
 
 	scene.add( plane )
 
+	const axesHelper = new THREE.AxesHelper( 5 )
+	scene.add( axesHelper )
+
 	WEBVR.checkAvailability()
 		.then( () => {
 
@@ -21,6 +24,7 @@ function init() {
 
 				console.log( display )
 				console.log( renderer.vr )
+				camBox.position.y = 1.8
 				renderer.vr.enabled = true
 				renderer.vr.setDevice( display )
 
