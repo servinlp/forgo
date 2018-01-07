@@ -1,7 +1,10 @@
 import {
 	scene,
 	camera,
-	renderer
+	renderer,
+	controls,
+	raycaster,
+	mouse
 } from './_base'
 import {
 	controller1,
@@ -9,6 +12,7 @@ import {
 } from './controls'
 
 function animate() {
+
 
 	renderer.animate( loop )
 
