@@ -18,6 +18,7 @@
         "comma-dangle": ["error", "never"],
         "no-use-before-define": ["error", { "functions": false, "classes": true }],
         "arrow-parens": ["error", "as-needed"],
-        "computed-property-spacing": ["error", "always"]
+        "computed-property-spacing": ["error", "always"],
+        "no-param-reassign": ["error", { "props": false }]
     }
 }
