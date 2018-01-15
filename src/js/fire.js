@@ -1,14 +1,15 @@
+/* global THREE, TweenMax, Power2 */
 import { scene } from './_base'
 import polyOBJLoader from './polyOBJLoader'
 
-let firewood
+const fire = new THREE.Object3D()
 
 function setFire() {
 
 	polyOBJLoader( 'build/objects/firewood/' )
 		.then( object => {
 
-			firewood = object.clone()
+			const firewood = object.clone()
 
 			firewood.name = 'firewood'
 
@@ -35,26 +36,13 @@ function setFire() {
 
 		} )
 
-	// const fireSphereGeometry = new THREE.SphereGeometry( 0.2, 21, 21 ),
-	// 	fireSphereMaterial = new THREE.MeshBasicMaterial( {color: 0xff3c1f } ),
-	// 	fireSphere = new THREE.Mesh( fireSphereGeometry, fireSphereMaterial ),
 	const firePosition = {
 			x: -1.01,
 			y: -0.3,
 			z: -0.5
-		}
-    //
-	// fireSphere.position.set( firePosition.x, firePosition.y, firePosition.z )
-    //
-	// scene.add( fireSphere )
-    //
-	// const fireLight = new THREE.PointLight( 0xff0000, 1, 100 );
-	// fireLight.position.set( firePosition.x, firePosition.y, firePosition.z );
-	// scene.add( fireLight )
-
-	const fire = new THREE.Object3D(),
+		},
 		flameConeGeometry = new THREE.ConeGeometry( 0.1, 0.5, 5 ),
-		flameConematerial = new THREE.MeshBasicMaterial( {color: 0xff3c1f } ),
+		flameConematerial = new THREE.MeshBasicMaterial( { color: 0xff3c1f } ),
 		flameCone = new THREE.Mesh( flameConeGeometry, flameConematerial ),
 		fireLight = new THREE.PointLight( 0xff0000, 0.3, 10 )
 
@@ -63,8 +51,6 @@ function setFire() {
 	flameCone.receiveShadow = true
 	flameCone.castShadow = true
 	flameCone.name = 'flameCone'
-
-	// flameCone.position.set( -0.1, 0, -0.1 )
 
 	flameCone.add( fireLight )
 
@@ -84,26 +70,11 @@ function setFire() {
 
 	} )
 
-	// console.log( flameCone )
-
-	// const fireLightHelper = new THREE.PointLightHelper( fireLight, 0.1 )
-	// scene.add( fireLightHelper )
-
-	// fire.add( flameCone )
-
-	// const secondFlameCone = flameCone.clone()
-    //
-	// secondFlameCone.position.z -= 0.1
-    //
-	// console.log( secondFlameCone )
-    //
-	// fire.add( secondFlameCone )
-
 	scene.add( fire )
 
 }
 
-function setFireCone( pos, cone, fire ) {
+function setFireCone( pos, cone, parent ) {
 
 	const down = Math.random() * 0.5,
 		timer = ( Math.random() * 1 ) + 0.3
@@ -111,13 +82,18 @@ function setFireCone( pos, cone, fire ) {
 	cone.position.set( pos.x, pos.y - down, pos.z )
 	cone.going = 'up'
 
-	TweenMax.to( cone.position, timer, { y: 0, ease:Power2.easeInOut,repeat: -1, yoyo: true } )
+	TweenMax.to( cone.position, timer, {
+		y: 0,
+		ease: Power2.easeInOut,
+		repeat: -1,
+		yoyo: true
+	} )
 
-	fire.add( cone )
+	parent.add( cone )
 
 }
 
 export default setFire
 export {
-	firewood
+	fire
 }

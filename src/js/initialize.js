@@ -7,6 +7,7 @@ import setMoon from './moon'
 import setFire from './fire'
 import setCliff from './cliff'
 import setTrees from './tree'
+import setSounds from './sound'
 import setTerrain from './terrain'
 import setMountain from './mountain'
 
@@ -19,6 +20,7 @@ function init() {
 	setFire()
 	setCliff()
 	setTrees()
+	setSounds()
 	setTerrain()
 	setMountain()
 

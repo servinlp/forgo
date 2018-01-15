@@ -31,18 +31,6 @@ function setLights() {
 
 	scene.add( lightOnMoon )
 
-
-	// const testLight = new THREE.SpotLight( 0xffffff, 0.7 )
-    //
-	// testLight.position.set( 100, 100, -100 )
-	// testLight.castShadow = true
-	// testLight.shadow.mapSize.width = 1024
-	// testLight.shadow.mapSize.height = 1024
-	// testLight.shadow.camera.near = 10
-	// testLight.shadow.camera.far = 200
-    //
-	// scene.add( testLight )
-
 }
 
 export default setLights

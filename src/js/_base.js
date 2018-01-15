@@ -1,7 +1,5 @@
 /* global THREE */
-// import trees from './allTrees'
 import { tree, setTree } from './tree'
-// import { cliff } from './cliff'
 import { terrain } from './terrain'
 
 const scene = new THREE.Scene(),
@@ -82,27 +80,29 @@ function resize() {
 
 ( function() {
 
-    const throttle = function( type, name, obj ) {
-        obj = obj || window
-        let running = false
-        const func = function() {
+	const throttle = function( type, name, obj ) {
 
-            if ( running ) return
-            running = true
-             requestAnimationFrame( () => {
+		obj = obj || window
+		let running = false
 
-                obj.dispatchEvent( new CustomEvent( name ) )
-                running = false
+		const func = function() {
 
-            } )
-        }
+			if ( running ) return
+			running = true
+			requestAnimationFrame( () => {
 
-        obj.addEventListener( type, func )
+				obj.dispatchEvent( new CustomEvent( name ) )
+				running = false
 
-    }
+			} )
+		}
 
-    /* init - you can init any event */
-    throttle( 'resize', 'optimizedResize' )
+		obj.addEventListener( type, func )
+
+	}
+
+	/* init - you can init any event */
+	throttle( 'resize', 'optimizedResize' )
 
 } )()
 

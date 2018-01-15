@@ -90,6 +90,15 @@ gulp.task( 'js-build', () => {
 
 })
 
+gulp.task( 'sound', () => {
+
+	pump( [
+		gulp.src( 'src/sound/*' ),
+		gulp.dest( 'build/sound' )
+	] )
+
+})
+
 gulp.task( 'image', () => {
 
     pump( [
@@ -134,9 +143,10 @@ gulp.task( 'browser-sync', () => {
 	gulp.watch( 'src/js-static/*.js', [ 'js-build' ] )
     gulp.watch( 'src/images/*', [ 'image' ] )
     gulp.watch( 'src/objects/*', [ 'objects' ] )
+	gulp.watch( 'src/sound/*', [ 'sound' ] )
     gulp.watch( './*.html' ).on( 'change', browserSync.reload )
 
 })
 
-gulp.task( 'default', [ 'css', 'js', 'js-build', 'image', 'objects' ] )
+gulp.task( 'default', [ 'css', 'js', 'js-build', 'image', 'objects', 'sound' ] )
 gulp.task( 'start', [ 'browser-sync' ] )

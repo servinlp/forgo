@@ -1,8 +1,7 @@
 import {
 	scene,
 	camera,
-	renderer,
-	controls
+	renderer
 } from './_base'
 import {
 	controller1,

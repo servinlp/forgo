@@ -1,8 +1,9 @@
 /* global THREE */
-import { scene, camera, camBox, controls } from './_base'
+import { scene } from './_base'
 import polyOBJLoader from './polyOBJLoader'
 
-let terrain
+let terrain,
+	waterBox
 
 function setTerrain() {
 
@@ -32,9 +33,23 @@ function setTerrain() {
 
 		} )
 
+	const waterBoxGeometry = new THREE.BoxGeometry( 100, 1, 1 ),
+		waterBoxMaterial = new THREE.MeshBasicMaterial( {
+			transparent: true,
+			opacity: 1,
+			wireframe: true
+		} )
+
+	waterBox = new THREE.Mesh( waterBoxGeometry, waterBoxMaterial )
+
+	waterBox.position.z -= 10
+
+	scene.add( waterBox )
+
 }
 
 export default setTerrain
 export {
-	terrain
+	terrain,
+	waterBox
 }
