@@ -90,10 +90,19 @@ gulp.task( 'js-build', () => {
 
 })
 
+gulp.task( 'sound', () => {
+
+	pump( [
+		gulp.src( 'src/sound/*' ),
+		gulp.dest( 'build/sound' )
+	] )
+
+})
+
 gulp.task( 'image', () => {
 
     pump( [
-        gulp.src( 'src/images/*' ),
+        gulp.src( [ 'src/images/*', 'src/images/**/*.png' ] ),
         imagemin([
             imagemin.gifsicle({interlaced: true}),
             imagemin.jpegtran({progressive: true}),
@@ -114,9 +123,8 @@ gulp.task( 'image', () => {
 gulp.task( 'objects', () => {
 
     pump( [
-        gulp.src( 'src/objects/*' ),
-        gulp.dest( 'build/objects' ),
-        browserSync.stream()
+        gulp.src( [ 'src/objects/*', 'src/objects/**/*' ] ),
+        gulp.dest( 'build/objects' )
     ] )
 
 })
@@ -133,11 +141,12 @@ gulp.task( 'browser-sync', () => {
     gulp.watch( [ 'src/css/*.scss', 'src/css/**/*.scss' ], [ 'scss-lint', 'css' ] )
     gulp.watch( [ 'src/js/*.js', 'src/js/**/*.js' ], [ 'js' ] )
 	gulp.watch( 'src/js-static/*.js', [ 'js-build' ] )
-    gulp.watch( 'src/images/*', [ 'image' ] )
+    gulp.watch( [ 'src/images/*', 'src/images/**/*' ], [ 'image' ] )
     gulp.watch( 'src/objects/*', [ 'objects' ] )
+	gulp.watch( 'src/sound/*', [ 'sound' ] )
     gulp.watch( './*.html' ).on( 'change', browserSync.reload )
 
 })
 
-gulp.task( 'default', [ 'css', 'js', 'js-build', 'image', 'objects' ] )
+gulp.task( 'default', [ 'css', 'js', 'js-build', 'image', 'objects', 'sound' ] )
 gulp.task( 'start', [ 'browser-sync' ] )

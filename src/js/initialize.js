@@ -1,32 +1,47 @@
 /* global THREE */
 import animate from './animate'
 import WEBVR from './WebVR'
-import { scene, renderer, camBox } from './_base'
+import { scene, renderer, camBox, playerHeight, fadeBox } from './_base'
+import { setControllers } from './controls'
+import setMoon from './moon'
+import setFire from './fire'
+import setCamp from './camp'
+import setCliff from './cliff'
+import setTrees from './tree'
+import setSounds from './sound'
+import setSkybox from './skybox'
+import setTerrain from './terrain'
+import setMountain from './mountain'
+
+let VRDisplay
 
 function init() {
 
-	const planeGeometry = new THREE.PlaneGeometry( 20, 20 ),
-		planeMaterial = new THREE.MeshBasicMaterial( { color: 0xffffff } ),
-		plane = new THREE.Mesh( planeGeometry, planeMaterial )
-	plane.name = 'footing'
+	// const axesHelper = new THREE.AxesHelper( 5 )
+	// scene.add( axesHelper )
 
-	plane.rotateX( ( Math.PI / 180 ) * -90 )
-
-	scene.add( plane )
-
-	const axesHelper = new THREE.AxesHelper( 5 )
-	scene.add( axesHelper )
+	setMoon()
+	setFire()
+	setCamp()
+	setCliff()
+	setTrees()
+	setSounds()
+	setSkybox()
+	setTerrain()
+	setMountain()
 
 	WEBVR.checkAvailability()
 		.then( () => {
 
 			WEBVR.getVRDisplay( display => {
 
-				console.log( display )
-				console.log( renderer.vr )
-				camBox.position.y = 1.8
+				camBox.position.y = playerHeight
 				renderer.vr.enabled = true
 				renderer.vr.setDevice( display )
+
+				VRDisplay = display
+
+				setControllers()
 
 				document.body.appendChild( WEBVR.getButton( display, renderer.domElement ) )
 
@@ -37,6 +52,10 @@ function init() {
 
 			console.log( message )
 
+			const fadeBoxMaterial = fadeBox.material
+
+			TweenMax.to( fadeBoxMaterial, 2.5, { opacity: 0, delay: 2, ease:Power2.easeInOut } )
+
 		} )
 
 	animate()
@@ -44,3 +63,6 @@ function init() {
 }
 
 export default init
+export {
+	VRDisplay
+}
