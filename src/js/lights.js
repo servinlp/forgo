@@ -6,8 +6,10 @@ let lightOnMoon
 
 function setLights() {
 
-	const pointLight = new THREE.PointLight( 0x367399, 1, 1000 )
+	const pointLight = new THREE.PointLight( 0x367399, 1, 1500 )
 	pointLight.position.set( moonPosition.x, moonPosition.y, moonPosition.z )
+
+	// pointLight.castShadow = true
 
 	const pointLightHelper = new THREE.PointLightHelper( pointLight, 1 )
 

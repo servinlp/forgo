@@ -102,7 +102,7 @@ gulp.task( 'sound', () => {
 gulp.task( 'image', () => {
 
     pump( [
-        gulp.src( 'src/images/*' ),
+        gulp.src( [ 'src/images/*', 'src/images/**/*.png' ] ),
         imagemin([
             imagemin.gifsicle({interlaced: true}),
             imagemin.jpegtran({progressive: true}),
@@ -141,7 +141,7 @@ gulp.task( 'browser-sync', () => {
     gulp.watch( [ 'src/css/*.scss', 'src/css/**/*.scss' ], [ 'scss-lint', 'css' ] )
     gulp.watch( [ 'src/js/*.js', 'src/js/**/*.js' ], [ 'js' ] )
 	gulp.watch( 'src/js-static/*.js', [ 'js-build' ] )
-    gulp.watch( 'src/images/*', [ 'image' ] )
+    gulp.watch( [ 'src/images/*', 'src/images/**/*' ], [ 'image' ] )
     gulp.watch( 'src/objects/*', [ 'objects' ] )
 	gulp.watch( 'src/sound/*', [ 'sound' ] )
     gulp.watch( './*.html' ).on( 'change', browserSync.reload )

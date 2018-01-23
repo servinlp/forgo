@@ -1,22 +1,36 @@
 /* global THREE */
 import { tree, setTree } from './tree'
 import { terrain } from './terrain'
+import { VRDisplay } from './initialize'
 
 const scene = new THREE.Scene(),
 	playerHeight = 1.4,
 
 	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 ),
 	camBox = new THREE.Group(),
+	fadeBoxGeometry = new THREE.BoxGeometry( 1, 1, 1 ),
+	fadeBoxMaterial = new THREE.MeshBasicMaterial( {
+		color: 0x000000,
+		transparent: true,
+		opacity: 1,
+		wireframe: false,
+		side: THREE.BackSide
+	} ),
+	fadeBox = new THREE.Mesh( fadeBoxGeometry, fadeBoxMaterial ),
 	moonPosition = {
-		x: 300,
-		y: 400,
-		z: -400
+		x: 500,
+		y: 600,
+		z: -600
 	}
 
 camera.position.y = playerHeight
 camera.position.z = + 2
 camBox.name = 'camBox'
 
+fadeBox.name = 'fadeBox'
+console.log( fadeBox )
+
+camera.add( fadeBox )
 camBox.add( camera )
 scene.add( camBox )
 
@@ -26,7 +40,6 @@ renderer.setSize( window.innerWidth, window.innerHeight )
 renderer.setPixelRatio( window.devicePixelRatio )
 
 renderer.shadowMap.enabled = true
-renderer.shadowMap.type = THREE.PCFSoftShadowMap
 
 document.body.appendChild( renderer.domElement )
 
@@ -108,6 +121,18 @@ function resize() {
 
 window.addEventListener( 'optimizedResize', resize )
 
+window.addEventListener( 'vrdisplaypresentchange', () => {
+
+	if( VRDisplay.isPresenting ) {
+
+		const fadeBoxMaterial = fadeBox.material
+
+		TweenMax.to( fadeBoxMaterial, 2.5, { opacity: 0, delay: 2, ease:Power2.easeInOut } )
+
+	}
+
+} )
+
 export {
 	scene,
 	camera,
@@ -117,5 +142,6 @@ export {
 	raycaster,
 	mouse,
 	controls,
-	moonPosition
+	moonPosition,
+	fadeBox
 }

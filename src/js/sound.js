@@ -13,12 +13,11 @@ function setSounds() {
 
 	fireAudioLoader.load( 'build/sound/fireplace.mp3', buffer => {
 
-		console.log( buffer )
-
 		fireSound.setBuffer( buffer )
 		fireSound.setRefDistance( 20 )
-		fireSound.setVolume( 0.1 )
-		// fireSound.play()
+		fireSound.setLoop( true )
+		fireSound.setVolume( 0.5 )
+		fireSound.play()
 
 		fire.add( fireSound )
 
@@ -40,7 +39,8 @@ function setSounds() {
 
 		waterSound.setBuffer( buffer )
 		waterSound.setRefDistance( 20 )
-		waterSound.setVolume( 2 )
+		waterSound.setLoop( true )
+		waterSound.setVolume( 10 )
 		waterSound.play()
 
 		waterBox.add( waterSound )

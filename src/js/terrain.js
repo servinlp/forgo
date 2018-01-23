@@ -36,8 +36,8 @@ function setTerrain() {
 	const waterBoxGeometry = new THREE.BoxGeometry( 100, 1, 1 ),
 		waterBoxMaterial = new THREE.MeshBasicMaterial( {
 			transparent: true,
-			opacity: 1,
-			wireframe: true
+			opacity: 0,
+			wireframe: false
 		} )
 
 	waterBox = new THREE.Mesh( waterBoxGeometry, waterBoxMaterial )

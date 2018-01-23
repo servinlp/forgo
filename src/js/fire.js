@@ -46,6 +46,8 @@ function setFire() {
 		flameCone = new THREE.Mesh( flameConeGeometry, flameConematerial ),
 		fireLight = new THREE.PointLight( 0xff0000, 0.3, 10 )
 
+	// fireLight.castShadow = true
+
 	fire.position.set( firePosition.x, 0, firePosition.z )
 
 	flameCone.receiveShadow = true
